@@ -9,21 +9,28 @@ use GuzzleHttp\Post\PostFile;
 
 class Telegram
 {
+    const DEFAULT_API_URL = 'https://api.telegram.org/bot';
+    
     /** @var HttpClient HTTP Client */
     protected $http;
 
     /** @var null|string Telegram Bot API Token. */
     protected $token = null;
 
+    /** @var string Telegram service URL, for proxy purpose */
+    protected $apiUrl;
+
     /**
      * @param null            $token
      * @param HttpClient|null $httpClient
      */
-    public function __construct($token = null, HttpClient $httpClient = null)
+    public function __construct($token = null, HttpClient $httpClient = null, $apiUrl = null)
     {
         $this->token = $token;
 
         $this->http = $httpClient;
+
+        $this->apiUrl = $apiUrl ?? static::DEFAULT_API_URL;
     }
 
     /**
@@ -138,7 +145,7 @@ class Telegram
             throw CouldNotSendNotification::telegramBotTokenNotProvided('You must provide your telegram bot token to make any API requests.');
         }
 
-        $endPointUrl = 'https://api.telegram.org/bot'.$this->token.'/'.$endpoint;
+        $endPointUrl = $this->apiUrl.$this->token.'/'.$endpoint;
 
         try {
             if($multipart)
