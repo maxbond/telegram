@@ -1,5 +1,5 @@
 {
-    "name": "laravel-notification-channels/telegram",
+    "name": "maxbond/telegram-custom-url",
     "description": "Telegram Notifications Driver",
     "keywords": [
       "telegram notification",
