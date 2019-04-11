@@ -17,7 +17,8 @@ class TelegramServiceProvider extends ServiceProvider
             ->give(function () {
                 return new Telegram(
                     config('services.telegram-bot-api.token'),
-                    new HttpClient()
+                    new HttpClient(),
+                    config('services.telegram-bot-api.url')
                 );
             });
     }
