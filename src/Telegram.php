@@ -9,6 +9,7 @@ use GuzzleHttp\Post\PostFile;
 
 class Telegram
 {
+    /** default upi url for telegram bot **/
     const DEFAULT_API_URL = 'https://api.telegram.org/bot';
     
     /** @var HttpClient HTTP Client */
